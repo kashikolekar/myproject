@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+
+<body>
+	<section>
+
+
+
+		<div class="card mr-4 ml-4">
+			<div class="card-body ">
+				<h1 class="text-center">
+					Your ConTact
+				</h1>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c:${contact}">
+							<th scope="row" th:text="${'SCM2023 - '+c.cid}">1</th>
+							<td>
+								<img class="my_profile_picture" th:src="@{'/image/'+${c.img}}" alt="Profile Photo"/>
+								<span th:text="${c.name}"></span>
+								
+							</td>
+							<td ><a th:href="@{'/user/'+${c.cid}+'/contact'}">
+								 <span th:text="${c.email}"></span>
+							
+							</a></td>
+							<td th:text="${c.phone}">@mdo</td>
+							<td>
+
+								<a th:onclick="@{'deletecontact(' + ${c.cid} + ');'}" class="btn btn-danger btn-sm">Delete</a>
+								<form th:action="@{'/user/opencontact/'+ ${c.cid}}" class="mt-2" th:method="post">
+									
+									<button type="submit" class="btn btn-primary btn-sm">Update</button>
+
+								</form>
+								
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+<!-- Pagination-->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/user/show-contact/'+${currentPage-1}}">Previous</a></li>
+						<li th:classappend="${currentPage==i-1?'active':''}" th:each="i:${#numbers.sequence(1,totalPage)}" class="page-item"><a  class="page-link" th:href="@{'/user/show-contact/'+${i-1}}"><span th:text="${i}"></span></a></li>
+				
+						<li th:if="${currentPage+1 != totalPage}" class="page-item"><a class="page-link" th:href="@{'/user/show-contact/'+${currentPage+1}}">Next</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>

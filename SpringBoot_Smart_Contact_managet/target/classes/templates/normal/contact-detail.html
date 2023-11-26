@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+</head>
+
+<body>
+	<section>
+		<div class="card mr-4 ml-4">
+			<div class="card-body" th:if="${contact}">
+
+				<div class="continer text-center">
+					<img style="height: 200px; width: 200px;" class="my_profile_picture"
+						th:src="@{'/image/'+${contact.img}}" alt="Profile Photo" />
+
+					<h2> <span th:text="${contact.name}"></span>(<span
+							th:text="${'hello '+ contact.secondname}"></span>)</h2>
+
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">SCM2023-<span th:text="${contact.cid}"></span></th>
+								
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td><span th:text="${contact.email}"></span></td>
+								
+							</tr>
+							<tr>
+								<th scope="row">Phone</th>
+								<td><span th:text="${contact.phone}"></span></td>
+								
+							</tr>
+							<tr>
+								<th scope="row">Work</th>
+								<td><span th:text="${contact.work}"></span></td>
+								
+							</tr>
+						
+						</tbody>
+					</table>
+					
+					<h1>Decripation</h1>
+					<h5><span th:utext="${contact.Decripation}"></span></h5>
+
+						<div class="comtainer">
+							<a th:onclick="@{'deletecontact(' + ${contact.cid} + ');'}" class="btn btn-danger btn-sm">Delete</a>
+								<form th:action="@{'/user/opencontact/'+ ${contact.cid}}" class="mt-2" th:method="post">
+								<button type="submit" class="btn btn-primary btn-sm">Update</button>
+								</form>
+						</div>
+				</div>
+			</div>
+
+		
+		</div>
+	<h1 class="text-center p-3 bg-danger text-white" th:unless="${contact}">You Dont Have Permission To See This Contact</h1>				
+	</section>
+</body>
+
+</html>

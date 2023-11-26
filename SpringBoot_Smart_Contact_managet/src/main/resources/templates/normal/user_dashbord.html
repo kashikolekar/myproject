@@ -1,0 +1,45 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>User DashBord</title>
+</head>
+
+<body>
+	<section>
+		<div class="text-center">
+			<h1> Welcome You are Normal User </h1>
+
+		<h1>User name <spann th:text="${user.name}"></spann>
+		</h1>
+		<h1>Email = <span th:text="${user.email}"></span></h1>
+
+		<h1><a th:href="@{/logout}"> LOGOUT </a></h1>
+
+
+		</div>
+		<div class="container">
+
+			<div class="card">
+				<div class="card-body">
+
+					<div class="continer text-center"> <img style="height: 200px; width: 200px;"
+						class="my_profile_picture " th:src="@{/image/newlogo.jpg}" alt="Profile Photo" />
+					</div>
+					
+					
+					<h1 class="text-center mt-3 font-italic font-weight-light">
+						Strat adding contact on cloud...
+						
+					</h1>
+					
+					<a th:href="@{/user/add-contact}" class=" mt-4 btn btn-primary btn-block text-uppercase">Add new contact </a>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>
