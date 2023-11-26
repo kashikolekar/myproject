@@ -1,9 +1,9 @@
 package com.spring.smart.Controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@RestController
 @RequestMapping("/Admin")
 public class AdminController {
 
